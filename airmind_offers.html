@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airmind Creation - Visual Production Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #c4a962;
+            --gold-light: #d4be82;
+            --olive: #6b7c5e;
+            --olive-dark: #4a5a40;
+            --cream: #f8f6f1;
+            --cream-dark: #ebe8e0;
+            --charcoal: #2d2d2d;
+            --teal: #1a6b6b;
+            --teal-light: #248f8f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50px;
+            padding: 5px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lang-btn:hover {
+            background: var(--cream);
+        }
+
+        .lang-btn.active {
+            background: var(--teal);
+            color: white;
+        }
+
+        .lang-btn span.flag {
+            font-size: 1.1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--olive) 0%, var(--olive-dark) 100%);
+            padding: 60px 20px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .logo-container {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--gold);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-bottom: 50px;
+            animation: float 6s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--olive-dark);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .logo-container img {
+            width: 85%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 300;
+            color: var(--cream);
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+        }
+
+        .hero .tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-style: italic;
+            color: var(--gold-light);
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-description {
+            max-width: 700px;
+            text-align: center;
+            color: rgba(248, 246, 241, 0.85);
+            font-size: 1.05rem;
+            font-weight: 300;
+            line-height: 1.9;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--gold-light);
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 40px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            color: var(--olive-dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 25px auto 0;
+            font-weight: 300;
+        }
+
+        /* Creative Studio Section */
+        .studio-section {
+            margin-bottom: 120px;
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .offer-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 35px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(196, 169, 98, 0.1);
+        }
+
+        .offer-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .offer-card.featured {
+            border: 2px solid var(--teal);
+        }
+
+        .offer-card.featured::before {
+            content: 'RECOMMENDED';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--teal);
+            color: white;
+            padding: 8px 45px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            transform: rotate(45deg);
+        }
+
+        .offer-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+        }
+
+        .offer-card .price {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--teal);
+            margin-bottom: 5px;
+        }
+
+        .offer-card .price-note {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .offer-card .target {
+            background: var(--cream);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+            color: #555;
+            font-style: italic;
+            border-left: 3px solid var(--gold);
+        }
+
+        .offer-card ul {
+            list-style: none;
+        }
+
+        .offer-card ul li {
+            padding: 10px 0;
+            padding-left: 28px;
+            position: relative;
+            font-size: 0.95rem;
+            color: #444;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .offer-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .offer-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            background: var(--teal-light);
+            border-radius: 50%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+            background-size: 12px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 35px;
+            background: var(--teal);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .cta-button:hover {
+            background: var(--teal-light);
+            transform: scale(1.02);
+        }
+
+        .cta-button.outline {
+            background: transparent;
+            border: 2px solid var(--teal);
+            color: var(--teal);
+        }
+
+        .cta-button.outline:hover {
+            background: var(--teal);
+            color: white;
+        }
+
+        /* Custom Offer */
+        .custom-offer {
+            background: linear-gradient(135deg, var(--charcoal) 0%, #3d3d3d 100%);
+            border-radius: 25px;
+            padding: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .custom-offer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+            opacity: 0.1;
+        }
+
+        .custom-offer h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--cream);
+            margin-bottom: 15px;
+        }
+
+        .custom-offer .subtitle {
+            color: var(--gold-light);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .custom-offer p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        .custom-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .custom-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--cream);
+            font-size: 0.95rem;
+        }
+
+        .custom-feature svg {
+            width: 20px;
+            height: 20px;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        /* Catalog Harmonization Section */
+        .catalog-section {
+            background: white;
+            border-radius: 30px;
+            padding: 80px 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+            margin-bottom: 80px;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 35px;
+            right: -15px;
+            width: 30px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        .step-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .process-step h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: 10px;
+        }
+
+        .process-step p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Pricing Tables */
+        .pricing-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .pricing-table {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 35px;
+        }
+
+        .pricing-table h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--olive-dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-table h4 .step-num {
+            background: var(--teal);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .pricing-table .description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .price-row:last-child {
+            border-bottom: none;
+        }
+
+        .price-row .label {
+            color: #444;
+            font-size: 0.95rem;
+        }
+
+        .price-row .value {
+            color: var(--teal);
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        /* Budget Examples */
+        .budget-examples {
+            background: linear-gradient(135deg, var(--olive) 0%, var(--olive-dark) 100%);
+            border-radius: 25px;
+            padding: 50px;
+            margin-top: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .budget-examples::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .budget-examples h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--cream);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .budget-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .budget-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .budget-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .budget-card .amount {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--gold-light);
+            margin-bottom: 10px;
+        }
+
+        .budget-card .breakdown {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Conditions */
+        .conditions {
+            background: var(--cream-dark);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 50px;
+        }
+
+        .conditions h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--olive-dark);
+            margin-bottom: 20px;
+        }
+
+        .conditions ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .conditions ul li {
+            font-size: 0.9rem;
+            color: #555;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .conditions ul li::before {
+            content: '○';
+            position: absolute;
+            left: 0;
+            color: var(--teal);
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 2px solid var(--teal);
+        }
+
+        .calculator-section h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--teal);
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .calculator-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .calculator-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .axes-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .axis-btn {
+            flex: 1;
+            padding: 15px 10px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .axis-btn span {
+            font-size: 0.8rem;
+            color: #888;
+            font-weight: 400;
+        }
+
+        .axis-btn:hover {
+            border-color: var(--teal);
+        }
+
+        .axis-btn.active {
+            border-color: var(--teal);
+            background: var(--teal);
+            color: white;
+        }
+
+        .axis-btn.active span {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .input-group input[type="number"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-family: 'Outfit', sans-serif;
+            text-align: center;
+            font-weight: 500;
+            color: var(--charcoal);
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input[type="number"]:focus {
+            outline: none;
+            border-color: var(--teal);
+        }
+
+        .input-group input[type="range"] {
+            width: 100%;
+            margin-top: 15px;
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, var(--teal) 0%, var(--teal) 20%, #e0e0e0 20%, #e0e0e0 100%);
+        }
+
+        .input-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--teal);
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .calculator-result {
+            background: var(--cream);
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .result-breakdown {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .breakdown-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .breakdown-row span:last-child {
+            font-weight: 500;
+            color: var(--charcoal);
+        }
+
+        .breakdown-details {
+            margin-top: 10px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .result-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .result-total span:first-child {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--charcoal);
+        }
+
+        .result-total span:last-child {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--teal);
+        }
+
+        .result-note {
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--olive);
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .axes-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Extension Banner */
+        .extension-banner {
+            background: white;
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            padding: 25px 35px;
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .extension-banner svg {
+            width: 40px;
+            height: 40px;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .extension-banner p {
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        .extension-banner strong {
+            color: var(--teal);
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            text-align: center;
+            padding: 100px 40px;
+            background: linear-gradient(135deg, var(--charcoal) 0%, #3d3d3d 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--teal) 0%, transparent 70%);
+            opacity: 0.1;
+        }
+
+        .footer-cta h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 400;
+            color: var(--cream);
+            margin-bottom: 20px;
+        }
+
+        .footer-cta p {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 500px;
+            margin: 0 auto 35px;
+            font-size: 1.05rem;
+        }
+
+        .footer-cta .cta-button {
+            display: inline-block;
+            width: auto;
+            padding: 18px 50px;
+            font-size: 1rem;
+            background: var(--gold);
+        }
+
+        .footer-cta .cta-button:hover {
+            background: var(--gold-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .custom-offer {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-step::after {
+                display: none;
+            }
+
+            .pricing-section {
+                grid-template-columns: 1fr;
+            }
+
+            .budget-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 60px 20px;
+            }
+
+            .catalog-section {
+                padding: 50px 30px;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .conditions ul {
+                grid-template-columns: 1fr;
+            }
+
+            .custom-features {
+                grid-template-columns: 1fr;
+            }
+
+            .extension-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="en">
+            <span class="flag">🇬🇧</span> EN
+        </button>
+        <button class="lang-btn" data-lang="fr">
+            <span class="flag">🇫🇷</span> FR
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Airmind Creation</h1>
+        <p class="tagline" data-en="The art of captivating. The science of converting." data-fr="L'art de captiver. La science de convertir.">The art of captivating. The science of converting.</p>
+        <p class="hero-description" data-en="An agile visual studio with high product fidelity, delivering fast and consistent production at reduced costs. We transform your visual needs into professional assets designed to power every touchpoint with your customers." data-fr="Un studio visuel agile, à haute fidélité produit, pour une production rapide et cohérente à moindres coûts. Nous transformons vos besoins visuels en assets professionnels, pensés pour alimenter chaque point de contact avec vos clients.">
+            An agile visual studio with high product fidelity, delivering fast and consistent production at reduced costs. 
+            We transform your visual needs into professional assets designed to power every touchpoint with your customers.
+        </p>
+        <div class="scroll-indicator">
+            <span data-en="Discover" data-fr="Découvrir">Discover</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <main>
+        <!-- Catalog Harmonization Section -->
+        <section class="catalog-section">
+            <div class="section-header">
+                <h2 data-en="Catalog Harmonization" data-fr="Harmonisation Catalogue">Catalog Harmonization</h2>
+                <p data-en="Achieve a visually consistent online store without managing hundreds of individual photoshoots. Calibrate once, batch-produce everywhere." data-fr="Obtenez une boutique visuellement homogène sans gérer des centaines de shootings individuels. Calibrez une fois, déclinez partout.">Achieve a visually consistent online store without managing hundreds of individual photoshoots. Calibrate once, batch-produce everywhere.</p>
+            </div>
+
+            <!-- Process Steps -->
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-icon">1</div>
+                    <h4 data-en="Free Audit" data-fr="Audit Gratuit">Free Audit</h4>
+                    <p data-en="30-minute video call to validate feasibility and provide a checklist." data-fr="Visio 30 min. Validation faisabilité (GO/NO GO) et checklist.">30-minute video call to validate feasibility and provide a checklist.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon">2</div>
+                    <h4 data-en="Calibration" data-fr="Calibration">Calibration</h4>
+                    <p data-en="Creation and validation of visual axes on 2-3 pilot products." data-fr="Création et validation des axes sur 2-3 produits pilotes.">Creation and validation of visual axes on 2-3 pilot products.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon">3</div>
+                    <h4 data-en="Batch Production" data-fr="Production Batch">Batch Production</h4>
+                    <p data-en="Industrial rollout across your entire catalog." data-fr="Lancement industriel sur l'ensemble du catalogue.">Industrial rollout across your entire catalog.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon">4</div>
+                    <h4 data-en="Delivery" data-fr="Livraison">Delivery</h4>
+                    <p data-en="Structured export ready for store integration." data-fr="Export structuré prêt pour l'intégration boutique.">Structured export ready for store integration.</p>
+                </div>
+            </div>
+
+            <!-- Pricing Tables -->
+            <div class="pricing-section">
+                <div class="pricing-table">
+                    <h4><span class="step-num">1</span> <span data-en="Axis Calibration" data-fr="Calibration des axes">Axis Calibration</span></h4>
+                    <p class="description" data-en="One-time setup fee. Includes research, pilot validation, and technical configuration." data-fr="Frais uniques de mise en place. Inclus : recherche, validation sur pilotes et configuration technique.">One-time setup fee. Includes research, pilot validation, and technical configuration.</p>
+                    <div class="price-row">
+                        <span class="label" data-en="1 Axis — Single Output" data-fr="1 axe — Rendu unique">1 Axis — Single Output</span>
+                        <span class="value">€390</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="label" data-en="2 Axes — Duo Pack" data-fr="2 axes — Pack duo">2 Axes — Duo Pack</span>
+                        <span class="value">€690</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="label" data-en="3 Axes — Complete Pack" data-fr="3 axes — Pack complet">3 Axes — Complete Pack</span>
+                        <span class="value">€990</span>
+                    </div>
+                </div>
+
+                <div class="pricing-table">
+                    <h4><span class="step-num">2</span> <span data-en="Batch Production" data-fr="Production Batch">Batch Production</span></h4>
+                    <p class="description" data-en="Cumulative tier pricing (computation costs included)." data-fr="Tarification par tranches cumulables (coûts de calcul inclus).">Cumulative tier pricing (computation costs included).</p>
+                    <div class="price-row">
+                        <span class="label" data-en="1 to 50 products" data-fr="De 1 à 50 produits">1 to 50 products</span>
+                        <span class="value">€8.00/<span data-en="product" data-fr="produit">product</span></span>
+                    </div>
+                    <div class="price-row">
+                        <span class="label" data-en="51 to 100 products" data-fr="De 51 à 100 produits">51 to 100 products</span>
+                        <span class="value">€6.50/<span data-en="product" data-fr="produit">product</span></span>
+                    </div>
+                    <div class="price-row">
+                        <span class="label" data-en="101 to 150 products" data-fr="De 101 à 150 produits">101 to 150 products</span>
+                        <span class="value">€5.80/<span data-en="product" data-fr="produit">product</span></span>
+                    </div>
+                    <div class="price-row">
+                        <span class="label" data-en="151 to 200 products" data-fr="De 151 à 200 produits">151 to 200 products</span>
+                        <span class="value">€5.20/<span data-en="product" data-fr="produit">product</span></span>
+                    </div>
+                    <div class="price-row">
+                        <span class="label" data-en="201 to 300 products" data-fr="De 201 à 300 produits">201 to 300 products</span>
+                        <span class="value">€4.60/<span data-en="product" data-fr="produit">product</span></span>
+                    </div>
+                    <div class="price-row">
+                        <span class="label" data-en="301 to 400 products" data-fr="De 301 à 400 produits">301 to 400 products</span>
+                        <span class="value">€4.10/<span data-en="product" data-fr="produit">product</span></span>
+                    </div>
+                    <div class="price-row">
+                        <span class="label" data-en="401 to 500 products" data-fr="De 401 à 500 produits">401 to 500 products</span>
+                        <span class="value">€3.90/<span data-en="product" data-fr="produit">product</span></span>
+                    </div>
+                    <div class="price-row">
+                        <span class="label" data-en="501+ products" data-fr="501 et + produits">501+ products</span>
+                        <span class="value" data-en="Quote" data-fr="Sur devis">Quote</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Budget Examples -->
+            <div class="budget-examples">
+                <h4 data-en="Budget Examples" data-fr="Exemples de Budget">Budget Examples</h4>
+                <div class="budget-grid">
+                    <div class="budget-card">
+                        <div class="amount">€790</div>
+                        <div class="breakdown" data-en="1 axis + 50 products" data-fr="1 axe + 50 produits">1 axis + 50 products<br><small>(€390 + 50 × €8)</small></div>
+                    </div>
+                    <div class="budget-card">
+                        <div class="amount">€1,415</div>
+                        <div class="breakdown" data-en="2 axes + 100 products" data-fr="2 axes + 100 produits">2 axes + 100 products<br><small data-en="(€690 + cumulative tiers)" data-fr="(€690 + tranches cumulées)">(€690 + cumulative tiers)</small></div>
+                    </div>
+                    <div class="budget-card">
+                        <div class="amount">€3,135</div>
+                        <div class="breakdown" data-en="3 axes + 400 products" data-fr="3 axes + 400 produits">3 axes + 400 products<br><small data-en="(€990 + cumulative tiers)" data-fr="(€990 + tranches cumulées)">(€990 + cumulative tiers)</small></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Extension Banner -->
+            <div class="extension-banner">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                </svg>
+                <p><strong data-en="Catalog Extension:" data-fr="Extension Catalogue :">Catalog Extension:</strong> <span data-en="Add new products at the same unit rate for 12 months, as long as the calibrated axes remain unchanged." data-fr="Ajout de nouveaux produits au même tarif unitaire pendant 12 mois, tant que les axes restent inchangés.">Add new products at the same unit rate for 12 months, as long as the calibrated axes remain unchanged.</span></p>
+            </div>
+
+            <!-- Pricing Calculator -->
+            <div class="calculator-section">
+                <h4 data-en="Pricing Calculator" data-fr="Calculateur de Prix">Pricing Calculator</h4>
+                <p class="calculator-subtitle" data-en="Estimate your catalog harmonization cost" data-fr="Estimez le coût de votre harmonisation catalogue">Estimate your catalog harmonization cost</p>
+                
+                <div class="calculator-grid">
+                    <div class="calculator-inputs">
+                        <div class="input-group">
+                            <label data-en="Number of Axes" data-fr="Nombre d'Axes">Number of Axes</label>
+                            <div class="axes-buttons">
+                                <button class="axis-btn active" data-axes="1" data-price="390" data-en="1 Axis" data-fr="1 Axe">1 Axis<span>€390</span></button>
+                                <button class="axis-btn" data-axes="2" data-price="690" data-en="2 Axes" data-fr="2 Axes">2 Axes<span>€690</span></button>
+                                <button class="axis-btn" data-axes="3" data-price="990" data-en="3 Axes" data-fr="3 Axes">3 Axes<span>€990</span></button>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="products" data-en="Number of Products" data-fr="Nombre de Produits">Number of Products</label>
+                            <input type="number" id="products" min="1" max="1000" value="100">
+                            <input type="range" id="products-slider" min="1" max="500" value="100">
+                        </div>
+                    </div>
+                    
+                    <div class="calculator-result">
+                        <div class="result-breakdown">
+                            <div class="breakdown-row">
+                                <span data-en="Axis Calibration" data-fr="Calibration des axes">Axis Calibration</span>
+                                <span id="axis-cost">€390</span>
+                            </div>
+                            <div class="breakdown-row">
+                                <span data-en="Batch Production" data-fr="Production Batch">Batch Production</span>
+                                <span id="batch-cost">€725</span>
+                            </div>
+                            <div class="breakdown-details" id="batch-details"></div>
+                        </div>
+                        <div class="result-total">
+                            <span data-en="Total Estimate" data-fr="Estimation Totale">Total Estimate</span>
+                            <span id="total-cost">€1,115</span>
+                        </div>
+                        <div class="result-note">
+                            <span id="per-product-cost" data-en-suffix=" per product" data-fr-suffix=" par produit">€11.15 per product</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conditions -->
+            <div class="conditions">
+                <h4 data-en="General Conditions" data-fr="Conditions Générales">General Conditions</h4>
+                <ul>
+                    <li data-en="Service subject to feasibility validation (free audit)" data-fr="Offre soumise à validation de faisabilité (audit gratuit)">Service subject to feasibility validation (free audit)</li>
+                    <li data-en="Unlimited creative feedback during calibration phase only" data-fr="Retours créatifs illimités durant la phase de calibration uniquement">Unlimited creative feedback during calibration phase only</li>
+                    <li data-en="Batch production: no per-product creative adjustments" data-fr="Production batch : pas d'ajustements créatifs produit par produit">Batch production: no per-product creative adjustments</li>
+                    <li data-en="Corrections included only for technical non-conformity" data-fr="Corrections incluses uniquement en cas de non-conformité technique">Corrections included only for technical non-conformity</li>
+                    <li data-en="All computation costs are included" data-fr="Tous les coûts de calcul sont inclus">All computation costs are included</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Creative Studio Section -->
+        <section class="studio-section">
+            <div class="section-header">
+                <h2 data-en="Creative Studio" data-fr="Studio Créatif">Creative Studio</h2>
+                <p data-en="Professional visuals for social media, e-commerce, and advertising campaigns tailored to your needs." data-fr="Visuels professionnels pour les réseaux sociaux, e-commerce et campagnes publicitaires adaptés à vos besoins.">Professional visuals for social media, e-commerce, and advertising campaigns tailored to your needs.</p>
+            </div>
+
+            <div class="offers-grid">
+                <!-- Subscription -->
+                <div class="offer-card">
+                    <h3 data-en="Subscription" data-fr="Abonnement">Subscription</h3>
+                    <div class="price">€350<span style="font-size: 1rem; font-weight: 400;" data-en="/month" data-fr="/mois">/month</span></div>
+                    <div class="price-note" data-en="12-month commitment (€450/month for 6 months)" data-fr="Engagement 12 mois (450€/mois sur 6 mois)">12-month commitment (€450/month for 6 months)</div>
+                    <div class="target" data-en="Perfect for maintaining an active Instagram feed without internal effort." data-fr="Maintenir un feed Instagram actif et professionnel sans effort interne.">Perfect for maintaining an active Instagram feed without internal effort.</div>
+                    <ul>
+                        <li data-en="5 visuals per month" data-fr="5 visuels / mois">5 visuals per month</li>
+                        <li data-en="Co-built content calendar" data-fr="Calendrier co-construit">Co-built content calendar</li>
+                        <li data-en="Cancellation possible (first 3 months)" data-fr="Rétractation possible (3 premiers mois)">Cancellation possible (first 3 months)</li>
+                    </ul>
+                    <a href="#" class="cta-button outline" data-en="Book a Call" data-fr="Réserver un RDV">Book a Call</a>
+                </div>
+
+                <!-- Thematic -->
+                <div class="offer-card featured">
+                    <h3 data-en="Thematic" data-fr="Thématique">Thematic</h3>
+                    <div class="price">€900</div>
+                    <div class="price-note" data-en="One-time payment" data-fr="Paiement unique">One-time payment</div>
+                    <div class="target" data-en="Ideal for launching a new collection or optimizing an e-commerce catalog." data-fr="Le lancement d'une nouvelle collection ou l'optimisation d'un catalogue e-commerce.">Ideal for launching a new collection or optimizing an e-commerce catalog.</div>
+                    <ul>
+                        <li data-en="Up to 15 selected visuals" data-fr="Jusqu'à 15 visuels sélectionnés">Up to 15 selected visuals</li>
+                        <li data-en="Staging for 1 to 4 products" data-fr="Mise en scène 1 à 4 produits">Staging for 1 to 4 products</li>
+                        <li data-en="Unlimited revisions until approval" data-fr="Retouches illimitées jusqu'à validation">Unlimited revisions until approval</li>
+                        <li data-en="3 format variations per visual" data-fr="Déclinaisons 3 formats par visuel">3 format variations per visual</li>
+                        <li data-en="Delivery in 3-5 business days" data-fr="Livraison 3-5 jours ouvrés">Delivery in 3-5 business days</li>
+                    </ul>
+                    <a href="#" class="cta-button" data-en="Book a Call" data-fr="Réserver un RDV">Book a Call</a>
+                </div>
+
+                <!-- Express -->
+                <div class="offer-card">
+                    <h3>Express</h3>
+                    <div class="price">€400</div>
+                    <div class="price-note" data-en="Guaranteed delivery <24h" data-fr="Livraison garantie < 24h">Guaranteed delivery &lt;24h</div>
+                    <div class="target" data-en="For last-minute marketing needs or quick creative testing." data-fr="Les opérations marketing de dernière minute ou le test rapide de nouvelles créatives Ads.">For last-minute marketing needs or quick creative testing.</div>
+                    <ul>
+                        <li data-en="4 visuals included" data-fr="Production Urgente (4 visuels)">4 visuals included</li>
+                        <li data-en="Quick qualification form" data-fr="Formulaire de qualification rapide">Quick qualification form</li>
+                        <li data-en="Format mixing available" data-fr="Panachage des formats possible">Format mixing available</li>
+                        <li data-en="Absolute priority scheduling" data-fr="Priorité absolue sur le planning">Absolute priority scheduling</li>
+                    </ul>
+                    <a href="#" class="cta-button outline" data-en="Book a Call" data-fr="Réserver un RDV">Book a Call</a>
+                </div>
+            </div>
+
+            <!-- Custom Offer -->
+            <div class="custom-offer">
+                <div>
+                    <h3 data-en="Custom Solution" data-fr="Sur Mesure">Custom Solution</h3>
+                    <p class="subtitle" data-en="Quote-based pricing" data-fr="Sur Devis">Quote-based pricing</p>
+                    <p data-en="Designed for high-growth brands requiring massive multi-channel production with complete customization and dedicated strategic support." data-fr="Marques à forte croissance nécessitant une production massive et multi-canal avec personnalisation complète et accompagnement stratégique dédié.">Designed for high-growth brands requiring massive multi-channel production with complete customization and dedicated strategic support.</p>
+                </div>
+                <div class="custom-features">
+                    <div class="custom-feature">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        <span data-en="Full customization" data-fr="Personnalisation complète">Full customization</span>
+                    </div>
+                    <div class="custom-feature">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        <span data-en="Unlimited products" data-fr="Nombre de produits illimité">Unlimited products</span>
+                    </div>
+                    <div class="custom-feature">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        <span data-en="Total creative freedom" data-fr="Liberté totale des thèmes">Total creative freedom</span>
+                    </div>
+                    <div class="custom-feature">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        <span data-en="Dedicated DA support" data-fr="Accompagnement DA dédié">Dedicated DA support</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <h2 data-en="Ready to Transform Your Visual Production?" data-fr="Prêt à transformer votre production visuelle ?">Ready to Transform Your Visual Production?</h2>
+        <p data-en="Contact us for an initial conversation and discover how Airmind Creation can become your daily visual partner." data-fr="Contactez-nous pour un premier échange et découvrez comment Airmind Creation peut devenir votre partenaire visuel au quotidien.">Contact us for an initial conversation and discover how Airmind Creation can become your daily visual partner.</p>
+        <a href="#" class="cta-button" data-en="Book Your Free Audit" data-fr="Réserver l'audit gratuit">Book Your Free Audit</a>
+    </section>
+
+    <script>
+        // Pricing Calculator
+        const axisPrices = { 1: 390, 2: 690, 3: 990 };
+        const tiers = [
+            { min: 1, max: 50, price: 8.00 },
+            { min: 51, max: 100, price: 6.50 },
+            { min: 101, max: 150, price: 5.80 },
+            { min: 151, max: 200, price: 5.20 },
+            { min: 201, max: 300, price: 4.60 },
+            { min: 301, max: 400, price: 4.10 },
+            { min: 401, max: 500, price: 3.90 }
+        ];
+
+        let selectedAxes = 1;
+
+        function calculateBatchCost(numProducts) {
+            let total = 0;
+            let details = [];
+            let remaining = numProducts;
+
+            for (const tier of tiers) {
+                if (remaining <= 0) break;
+                
+                const tierSize = tier.max - tier.min + 1;
+                const productsInTier = Math.min(remaining, tier.min === 1 ? 50 : tierSize);
+                
+                if (numProducts >= tier.min) {
+                    const actualProducts = Math.min(numProducts, tier.max) - tier.min + 1;
+                    const adjustedProducts = tier.min === 1 ? Math.min(numProducts, 50) : actualProducts;
+                    
+                    if (adjustedProducts > 0 && numProducts >= tier.min) {
+                        let count;
+                        if (tier.min === 1) {
+                            count = Math.min(numProducts, 50);
+                        } else {
+                            count = Math.min(numProducts - tier.min + 1, tier.max - tier.min + 1);
+                            if (numProducts < tier.min) count = 0;
+                        }
+                        
+                        if (count > 0) {
+                            const cost = count * tier.price;
+                            total += cost;
+                            details.push(`${tier.min}-${Math.min(numProducts, tier.max)}: ${count} × €${tier.price.toFixed(2)} = €${cost.toFixed(2)}`);
+                        }
+                    }
+                }
+            }
+
+            // Recalculate properly
+            total = 0;
+            details = [];
+            
+            for (const tier of tiers) {
+                if (numProducts < tier.min) break;
+                
+                const start = tier.min;
+                const end = Math.min(numProducts, tier.max);
+                const count = end - start + 1;
+                
+                if (count > 0) {
+                    const cost = count * tier.price;
+                    total += cost;
+                    details.push(`${start}-${end}: ${count} × €${tier.price.toFixed(2)} = €${cost.toFixed(2)}`);
+                }
+            }
+
+            if (numProducts > 500) {
+                details.push(`501-${numProducts}: Contact for quote`);
+            }
+
+            return { total, details };
+        }
+
+        function updateCalculator() {
+            const numProducts = parseInt(document.getElementById('products').value) || 0;
+            const axisCost = axisPrices[selectedAxes];
+            const { total: batchCost, details } = calculateBatchCost(numProducts);
+            const totalCost = axisCost + batchCost;
+            const perProduct = numProducts > 0 ? totalCost / numProducts : 0;
+
+            document.getElementById('axis-cost').textContent = `€${axisCost.toLocaleString()}`;
+            document.getElementById('batch-cost').textContent = `€${batchCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            document.getElementById('total-cost').textContent = `€${totalCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            document.getElementById('per-product-cost').textContent = `€${perProduct.toFixed(2)} per product`;
+            document.getElementById('batch-details').innerHTML = details.join('<br>');
+
+            // Update slider background
+            const slider = document.getElementById('products-slider');
+            const percent = (numProducts / 500) * 100;
+            slider.style.background = `linear-gradient(to right, var(--teal) 0%, var(--teal) ${percent}%, #e0e0e0 ${percent}%, #e0e0e0 100%)`;
+        }
+
+        // Event listeners
+        document.querySelectorAll('.axis-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.axis-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedAxes = parseInt(btn.dataset.axes);
+                updateCalculator();
+            });
+        });
+
+        document.getElementById('products').addEventListener('input', (e) => {
+            document.getElementById('products-slider').value = e.target.value;
+            updateCalculator();
+        });
+
+        document.getElementById('products-slider').addEventListener('input', (e) => {
+            document.getElementById('products').value = e.target.value;
+            updateCalculator();
+        });
+
+        // Initial calculation
+        updateCalculator();
+
+        // Language Switcher
+        let currentLang = 'en';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Update all elements with data-en and data-fr attributes
+            document.querySelectorAll('[data-en][data-fr]').forEach(el => {
+                const text = el.getAttribute(`data-${lang}`);
+                if (text) {
+                    // Check if element has child nodes that should be preserved
+                    if (el.tagName === 'A' || el.children.length === 0) {
+                        el.textContent = text;
+                    } else {
+                        // For elements with children, only update text nodes
+                        const childNodes = Array.from(el.childNodes);
+                        childNodes.forEach(node => {
+                            if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+                                // Don't replace if it's just whitespace
+                            }
+                        });
+                        // For complex elements, just set innerHTML if no special children
+                        if (!el.querySelector('svg') && !el.querySelector('span[data-en]')) {
+                            el.innerHTML = text;
+                        }
+                    }
+                }
+            });
+
+            // Update axis buttons text (preserve the price span)
+            document.querySelectorAll('.axis-btn[data-en][data-fr]').forEach(btn => {
+                const text = btn.getAttribute(`data-${lang}`);
+                const priceSpan = btn.querySelector('span');
+                const price = priceSpan ? priceSpan.outerHTML : '';
+                btn.innerHTML = text + price;
+            });
+
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            // Update the per-product text in calculator
+            updateCalculator();
+        }
+
+        // Override updateCalculator to handle language
+        const originalUpdateCalculator = updateCalculator;
+        updateCalculator = function() {
+            const numProducts = parseInt(document.getElementById('products').value) || 0;
+            const axisCost = axisPrices[selectedAxes];
+            const { total: batchCost, details } = calculateBatchCost(numProducts);
+            const totalCost = axisCost + batchCost;
+            const perProduct = numProducts > 0 ? totalCost / numProducts : 0;
+
+            document.getElementById('axis-cost').textContent = `€${axisCost.toLocaleString()}`;
+            document.getElementById('batch-cost').textContent = `€${batchCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            document.getElementById('total-cost').textContent = `€${totalCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            
+            const suffix = currentLang === 'fr' ? ' par produit' : ' per product';
+            document.getElementById('per-product-cost').textContent = `€${perProduct.toFixed(2)}${suffix}`;
+            document.getElementById('batch-details').innerHTML = details.join('<br>');
+
+            // Update slider background
+            const slider = document.getElementById('products-slider');
+            const percent = (numProducts / 500) * 100;
+            slider.style.background = `linear-gradient(to right, var(--teal) 0%, var(--teal) ${percent}%, #e0e0e0 ${percent}%, #e0e0e0 100%)`;
+        };
+
+        // Language button event listeners
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                switchLanguage(btn.dataset.lang);
+            });
+        });
+    </script>
+</body>
+</html>
