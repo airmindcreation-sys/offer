@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airmind Creation - Motion Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #c4a962;
+            --gold-light: #d4be82;
+            --olive: #6b7c5e;
+            --olive-dark: #4a5a40;
+            --cream: #f8f6f1;
+            --cream-dark: #ebe8e0;
+            --charcoal: #2d2d2d;
+            --teal: #1a6b6b;
+            --teal-light: #248f8f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50px;
+            padding: 5px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lang-btn:hover {
+            background: var(--cream);
+        }
+
+        .lang-btn.active {
+            background: var(--teal);
+            color: white;
+        }
+
+        .lang-btn span.flag {
+            font-size: 1.1rem;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Offset for fixed nav */
+        section[id] {
+            scroll-margin-top: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--olive) 0%, var(--olive-dark) 100%);
+            padding: 60px 20px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 300;
+            color: var(--cream);
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+        }
+
+        .hero .tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-style: italic;
+            color: var(--gold-light);
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-description {
+            max-width: 700px;
+            text-align: center;
+            color: rgba(248, 246, 241, 0.85);
+            font-size: 1.05rem;
+            font-weight: 300;
+            line-height: 1.9;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 40px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            color: var(--olive-dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 25px auto 0;
+            font-weight: 300;
+        }
+
+        /* Studio Section */
+        .studio-section {
+            margin-bottom: 120px;
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .offer-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 35px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(196, 169, 98, 0.1);
+        }
+
+        .offer-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .offer-card.featured {
+            border: 2px solid var(--teal);
+        }
+
+        .offer-card.featured::before {
+            content: 'RECOMMENDED';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--teal);
+            color: white;
+            padding: 8px 45px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            transform: rotate(45deg);
+        }
+
+        .offer-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+        }
+
+        .offer-card .price {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--teal);
+            margin-bottom: 5px;
+        }
+
+        .offer-card .price-note {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .offer-card .target {
+            background: var(--cream);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+            color: #555;
+            font-style: italic;
+            border-left: 3px solid var(--gold);
+        }
+
+        .offer-card ul {
+            list-style: none;
+        }
+
+        .offer-card ul li {
+            padding: 10px 0;
+            padding-left: 28px;
+            position: relative;
+            font-size: 0.95rem;
+            color: #444;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .offer-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .offer-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            background: var(--teal-light);
+            border-radius: 50%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+            background-size: 12px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 35px;
+            background: var(--teal);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .cta-button:hover {
+            background: var(--teal-light);
+            transform: scale(1.02);
+        }
+
+        .cta-button.outline {
+            background: transparent;
+            border: 2px solid var(--teal);
+            color: var(--teal);
+        }
+
+        .cta-button.outline:hover {
+            background: var(--teal);
+            color: white;
+        }
+
+        /* Video Add-ons */
+        .video-addons {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 50px;
+        }
+
+        .video-addons h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--olive-dark);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .addons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .addon-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 18px 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        .addon-name {
+            color: #444;
+            font-size: 0.95rem;
+        }
+
+        .addon-price {
+            color: var(--teal);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Batch Video Production */
+        .batch-video {
+            background: linear-gradient(135deg, var(--charcoal) 0%, #3d3d3d 100%);
+            border-radius: 25px;
+            padding: 50px;
+            margin-top: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .batch-video::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--teal) 0%, transparent 70%);
+            opacity: 0.1;
+        }
+
+        .batch-video-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .batch-video-header h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--cream);
+            margin-bottom: 15px;
+        }
+
+        .batch-video-header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .batch-video-pricing {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .batch-video-row {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 20px 25px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .batch-video-row:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .batch-video-row .label {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .batch-video-row .value {
+            display: block;
+            color: var(--gold-light);
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .batch-video-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .batch-video-note svg {
+            width: 20px;
+            height: 20px;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .batch-video-note span {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            text-align: center;
+            padding: 100px 40px;
+            background: linear-gradient(135deg, var(--charcoal) 0%, #3d3d3d 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--teal) 0%, transparent 70%);
+            opacity: 0.1;
+        }
+
+        .footer-cta h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 400;
+            color: var(--cream);
+            margin-bottom: 20px;
+        }
+
+        .footer-cta p {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 500px;
+            margin: 0 auto 35px;
+            font-size: 1.05rem;
+        }
+
+        .footer-cta .cta-button {
+            display: inline-block;
+            width: auto;
+            padding: 18px 50px;
+            font-size: 1rem;
+            background: var(--gold);
+        }
+
+        .footer-cta .cta-button:hover {
+            background: var(--gold-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            main {
+                padding: 40px 15px;
+            }
+
+            .section-header {
+                margin-bottom: 40px;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-header p {
+                font-size: 0.95rem;
+            }
+
+            /* Offers Grid Mobile */
+            .offers-grid {
+                gap: 20px;
+            }
+
+            .offer-card {
+                padding: 30px 25px;
+                border-radius: 15px;
+            }
+
+            .offer-card h3 {
+                font-size: 1.4rem;
+            }
+
+            .offer-card .price {
+                font-size: 1.8rem;
+            }
+
+            .offer-card .target {
+                padding: 12px;
+                font-size: 0.85rem;
+            }
+
+            .offer-card ul li {
+                font-size: 0.9rem;
+                padding: 8px 0;
+                padding-left: 25px;
+            }
+
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+
+            /* Video Add-ons Mobile */
+            .video-addons {
+                padding: 30px 20px;
+                margin-top: 30px;
+            }
+
+            .video-addons h4 {
+                font-size: 1.2rem;
+            }
+
+            .addons-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .addon-item {
+                padding: 15px 20px;
+            }
+
+            .addon-name {
+                font-size: 0.9rem;
+            }
+
+            /* Batch Video Mobile */
+            .batch-video {
+                padding: 35px 20px;
+                margin-top: 30px;
+            }
+
+            .batch-video-header h4 {
+                font-size: 1.4rem;
+            }
+
+            .batch-video-header p {
+                font-size: 0.9rem;
+            }
+
+            .batch-video-pricing {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .batch-video-row {
+                padding: 15px;
+            }
+
+            .batch-video-row .label {
+                font-size: 0.8rem;
+            }
+
+            .batch-video-row .value {
+                font-size: 1.1rem;
+            }
+
+            .batch-video-note {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+
+            .batch-video-note span {
+                font-size: 0.85rem;
+            }
+
+            /* Footer CTA Mobile */
+            .footer-cta {
+                padding: 60px 20px;
+            }
+
+            .footer-cta h2 {
+                font-size: 1.5rem;
+            }
+
+            .footer-cta p {
+                font-size: 0.95rem;
+            }
+
+            .footer-cta .cta-button {
+                padding: 15px 35px;
+            }
+
+            /* Language Switcher Mobile */
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+                padding: 3px;
+            }
+
+            .lang-btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+                gap: 5px;
+            }
+
+            .lang-btn span.flag {
+                font-size: 1rem;
+            }
+
+            /* Hero Mobile */
+            .hero {
+                padding: 80px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1rem;
+            }
+
+            .hero-description {
+                font-size: 0.95rem;
+                padding: 0 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            main {
+                padding: 30px 10px;
+            }
+
+            .offer-card {
+                padding: 25px 20px;
+            }
+
+            .footer-cta {
+                padding: 50px 15px;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn" data-lang="en">
+            <span class="flag">🇬🇧</span> EN
+        </button>
+        <button class="lang-btn active" data-lang="fr">
+            <span class="flag">🇫🇷</span> FR
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Airmind Creation</h1>
+        <p class="tagline" data-en="The art of captivating. The science of converting." data-fr="L'art de captiver. La science de convertir.">L'art de captiver. La science de convertir.</p>
+        <p class="hero-description" data-en="AI-powered video production for social media, ads, and e-commerce. Bring your products to life with professional motion content." data-fr="Production vidéo alimentée par l'IA pour les réseaux sociaux, publicités et e-commerce. Donnez vie à vos produits avec du contenu motion professionnel.">
+            Production vidéo alimentée par l'IA pour les réseaux sociaux, publicités et e-commerce. Donnez vie à vos produits avec du contenu motion professionnel.
+        </p>
+    </section>
+
+    <main>
+        <!-- Motion Studio Section -->
+        <section class="studio-section" id="motion">
+            <div class="section-header">
+                <h2 data-en="Motion Studio" data-fr="Studio Motion">Studio Motion</h2>
+                <p data-en="AI-powered video production for social media, ads, and e-commerce. Bring your products to life." data-fr="Production vidéo alimentée par l'IA pour les réseaux sociaux, publicités et e-commerce. Donnez vie à vos produits.">Production vidéo alimentée par l'IA pour les réseaux sociaux, publicités et e-commerce. Donnez vie à vos produits.</p>
+            </div>
+
+            <div class="offers-grid">
+                <!-- Single Video -->
+                <div class="offer-card">
+                    <h3 data-en="Single Video" data-fr="Vidéo Unique">Vidéo Unique</h3>
+                    <div class="price">€230</div>
+                    <div class="price-note" data-en="One-off production" data-fr="Production ponctuelle">Production ponctuelle</div>
+                    <div class="target" data-en="Perfect for testing video content or a quick product highlight." data-fr="Idéal pour tester le contenu vidéo ou mettre en avant un produit rapidement.">Idéal pour tester le contenu vidéo ou mettre en avant un produit rapidement.</div>
+                    <ul>
+                        <li data-en="1 video up to 10 seconds" data-fr="1 vidéo jusqu'à 10 secondes">1 vidéo jusqu'à 10 secondes</li>
+                        <li data-en="1 product featured" data-fr="1 produit mis en scène">1 produit mis en scène</li>
+                        <li data-en="2 revision rounds" data-fr="2 tours de révision">2 tours de révision</li>
+                        <li data-en="Delivery in 5-7 business days" data-fr="Livraison en 5-7 jours ouvrés">Livraison en 5-7 jours ouvrés</li>
+                    </ul>
+                    <a href="#" class="cta-button outline" data-en="Book a Call" data-fr="Réserver un RDV">Réserver un RDV</a>
+                </div>
+
+                <!-- Motion Pack -->
+                <div class="offer-card featured">
+                    <h3 data-en="Campaign Pack" data-fr="Pack Campagne">Pack Campagne</h3>
+                    <div class="price">€750</div>
+                    <div class="price-note" data-en="€187.50/video — Best value" data-fr="187,50€/vidéo — Meilleur rapport">187,50€/vidéo — Meilleur rapport</div>
+                    <div class="target" data-en="Ideal for a campaign launch or multi-format social media content." data-fr="Idéal pour un lancement de campagne ou du contenu multi-format pour les réseaux sociaux.">Idéal pour un lancement de campagne ou du contenu multi-format pour les réseaux sociaux.</div>
+                    <ul>
+                        <li data-en="4 videos up to 10 seconds each" data-fr="4 vidéos jusqu'à 10 secondes chacune">4 vidéos jusqu'à 10 secondes chacune</li>
+                        <li data-en="Up to 3 products" data-fr="Jusqu'à 3 produits">Jusqu'à 3 produits</li>
+                        <li data-en="Unlimited revisions until approval" data-fr="Révisions illimitées jusqu'à validation">Révisions illimitées jusqu'à validation</li>
+                        <li data-en="3 format variations (9:16, 1:1, 16:9)" data-fr="3 déclinaisons de format (9:16, 1:1, 16:9)">3 déclinaisons de format (9:16, 1:1, 16:9)</li>
+                        <li data-en="Delivery in 7-10 business days" data-fr="Livraison en 7-10 jours ouvrés">Livraison en 7-10 jours ouvrés</li>
+                    </ul>
+                    <a href="#" class="cta-button" data-en="Book a Call" data-fr="Réserver un RDV">Réserver un RDV</a>
+                </div>
+
+                <!-- Motion Subscription -->
+                <div class="offer-card">
+                    <h3 data-en="Motion Subscription" data-fr="Abonnement Motion">Abonnement Motion</h3>
+                    <div class="price">€590<span style="font-size: 1rem; font-weight: 400;" data-en="/month" data-fr="/mois">/mois</span></div>
+                    <div class="price-note" data-en="12-month commitment (€690/month for 6 months)" data-fr="Engagement 12 mois (690€/mois sur 6 mois)">Engagement 12 mois (690€/mois sur 6 mois)</div>
+                    <div class="target" data-en="For brands needing regular video content for social media." data-fr="Pour les marques ayant besoin de contenu vidéo régulier pour les réseaux sociaux.">Pour les marques ayant besoin de contenu vidéo régulier pour les réseaux sociaux.</div>
+                    <ul>
+                        <li data-en="3 videos per month" data-fr="3 vidéos par mois">3 vidéos par mois</li>
+                        <li data-en="Co-built content calendar" data-fr="Calendrier co-construit">Calendrier co-construit</li>
+                        <li data-en="Priority scheduling" data-fr="Priorité sur le planning">Priorité sur le planning</li>
+                        <li data-en="Format variations included" data-fr="Déclinaisons de format incluses">Déclinaisons de format incluses</li>
+                    </ul>
+                    <a href="#" class="cta-button outline" data-en="Book a Call" data-fr="Réserver un RDV">Réserver un RDV</a>
+                </div>
+            </div>
+
+            <!-- Video Add-ons -->
+            <div class="video-addons">
+                <h4 data-en="Video Add-ons" data-fr="Options Vidéo">Options Vidéo</h4>
+                <div class="addons-grid">
+                    <div class="addon-item">
+                        <span class="addon-name" data-en="Extra 5 seconds" data-fr="5 secondes supplémentaires">5 secondes supplémentaires</span>
+                        <span class="addon-price">+€75</span>
+                    </div>
+                    <div class="addon-item">
+                        <span class="addon-name" data-en="Additional product in same video" data-fr="Produit additionnel dans la même vidéo">Produit additionnel dans la même vidéo</span>
+                        <span class="addon-price">+€50</span>
+                    </div>
+                    <div class="addon-item">
+                        <span class="addon-name" data-en="Express delivery (<48h)" data-fr="Livraison express (<48h)">Livraison express (&lt;48h)</span>
+                        <span class="addon-price">+50%</span>
+                    </div>
+                    <div class="addon-item">
+                        <span class="addon-name" data-en="Custom music/sound design" data-fr="Musique/design sonore personnalisé">Musique/design sonore personnalisé</span>
+                        <span class="addon-price">+€80</span>
+                    </div>
+                    <div class="addon-item">
+                        <span class="addon-name" data-en="Voiceover integration" data-fr="Intégration voix-off">Intégration voix-off</span>
+                        <span class="addon-price">+€60</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Batch Video Production -->
+            <div class="batch-video">
+                <div class="batch-video-header">
+                    <h4 data-en="Batch Video Production" data-fr="Production Vidéo en Volume">Production Vidéo en Volume</h4>
+                    <p data-en="For brands needing video versions of their catalog. Requires existing Catalog Harmonization calibration." data-fr="Pour les marques ayant besoin de versions vidéo de leur catalogue. Nécessite une calibration Harmonisation Catalogue existante.">Pour les marques ayant besoin de versions vidéo de leur catalogue. Nécessite une calibration Harmonisation Catalogue existante.</p>
+                </div>
+                <div class="batch-video-pricing">
+                    <div class="batch-video-row">
+                        <span class="label" data-en="1-10 videos" data-fr="1-10 vidéos">1-10 vidéos</span>
+                        <span class="value">€180/<span data-en="video" data-fr="vidéo">vidéo</span></span>
+                    </div>
+                    <div class="batch-video-row">
+                        <span class="label" data-en="11-25 videos" data-fr="11-25 vidéos">11-25 vidéos</span>
+                        <span class="value">€150/<span data-en="video" data-fr="vidéo">vidéo</span></span>
+                    </div>
+                    <div class="batch-video-row">
+                        <span class="label" data-en="26-50 videos" data-fr="26-50 vidéos">26-50 vidéos</span>
+                        <span class="value">€120/<span data-en="video" data-fr="vidéo">vidéo</span></span>
+                    </div>
+                    <div class="batch-video-row">
+                        <span class="label" data-en="51-100 videos" data-fr="51-100 vidéos">51-100 vidéos</span>
+                        <span class="value">€95/<span data-en="video" data-fr="vidéo">vidéo</span></span>
+                    </div>
+                    <div class="batch-video-row">
+                        <span class="label" data-en="101+ videos" data-fr="101+ vidéos">101+ vidéos</span>
+                        <span class="value" data-en="Quote" data-fr="Sur devis">Sur devis</span>
+                    </div>
+                </div>
+                <div class="batch-video-note">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                    <span data-en="Video axis setup: +€200 (one-time fee on top of existing calibration)" data-fr="Configuration axe vidéo : +200€ (frais uniques en plus de la calibration existante)">Configuration axe vidéo : +200€ (frais uniques en plus de la calibration existante)</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta" id="contact">
+        <h2 data-en="Ready to Bring Your Products to Life?" data-fr="Prêt à donner vie à vos produits ?">Prêt à donner vie à vos produits ?</h2>
+        <p data-en="Contact us for an initial conversation and discover how Airmind Creation can elevate your video content." data-fr="Contactez-nous pour un premier échange et découvrez comment Airmind Creation peut sublimer votre contenu vidéo.">Contactez-nous pour un premier échange et découvrez comment Airmind Creation peut sublimer votre contenu vidéo.</p>
+        <a href="#" class="cta-button" data-en="Book a Call" data-fr="Réserver un RDV">Réserver un RDV</a>
+    </section>
+
+    <script>
+        // Language Switcher
+        let currentLang = 'fr';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Update all elements with data-en and data-fr attributes
+            document.querySelectorAll('[data-en][data-fr]').forEach(el => {
+                const text = el.getAttribute(`data-${lang}`);
+                if (text) {
+                    // Check if element has child nodes that should be preserved
+                    if (el.tagName === 'A' || el.children.length === 0) {
+                        el.textContent = text;
+                    } else {
+                        // For elements with children, only update text nodes
+                        const childNodes = Array.from(el.childNodes);
+                        childNodes.forEach(node => {
+                            if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+                                // Don't replace if it's just whitespace
+                            }
+                        });
+                        // For complex elements, just set innerHTML if no special children
+                        if (!el.querySelector('svg') && !el.querySelector('span[data-en]')) {
+                            el.innerHTML = text;
+                        }
+                    }
+                }
+            });
+
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            // Update featured badge
+            const featuredCard = document.querySelector('.offer-card.featured');
+            if (featuredCard) {
+                featuredCard.style.setProperty('--badge-text', lang === 'fr' ? '"RECOMMANDÉ"' : '"RECOMMENDED"');
+            }
+        }
+
+        // Add CSS for dynamic badge text
+        const style = document.createElement('style');
+        style.textContent = `
+            .offer-card.featured::before {
+                content: var(--badge-text, 'RECOMMANDÉ');
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Language button event listeners
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                switchLanguage(btn.dataset.lang);
+            });
+        });
+
+        // Initialize with French
+        switchLanguage('fr');
+    </script>
+</body>
+</html>
