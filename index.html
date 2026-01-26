@@ -336,37 +336,6 @@
             background-position: center;
         }
 
-        .cta-button {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 14px 35px;
-            background: var(--teal);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            text-align: center;
-            width: 100%;
-        }
-
-        .cta-button:hover {
-            background: var(--teal-light);
-            transform: scale(1.02);
-        }
-
-        .cta-button.outline {
-            background: transparent;
-            border: 2px solid var(--teal);
-            color: var(--teal);
-        }
-
-        .cta-button.outline:hover {
-            background: var(--teal);
-            color: white;
-        }
-
         /* Custom Offer */
         .custom-offer {
             background: linear-gradient(135deg, var(--charcoal) 0%, #3d3d3d 100%);
@@ -894,52 +863,148 @@
             color: var(--teal);
         }
 
-        /* Footer CTA */
-        .footer-cta {
+        /* Video Add-ons */
+        .video-addons {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 50px;
+        }
+
+        .video-addons h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--olive-dark);
+            margin-bottom: 25px;
             text-align: center;
-            padding: 100px 40px;
+        }
+
+        .addons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .addon-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 18px 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        .addon-name {
+            color: #444;
+            font-size: 0.95rem;
+        }
+
+        .addon-price {
+            color: var(--teal);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Batch Video Production */
+        .batch-video {
             background: linear-gradient(135deg, var(--charcoal) 0%, #3d3d3d 100%);
+            border-radius: 25px;
+            padding: 50px;
+            margin-top: 50px;
             position: relative;
             overflow: hidden;
         }
 
-        .footer-cta::before {
+        .batch-video::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
             background: radial-gradient(circle, var(--teal) 0%, transparent 70%);
             opacity: 0.1;
         }
 
-        .footer-cta h2 {
+        .batch-video-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .batch-video-header h4 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-size: 1.8rem;
             font-weight: 400;
             color: var(--cream);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        .footer-cta p {
+        .batch-video-header p {
             color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
             max-width: 500px;
-            margin: 0 auto 35px;
-            font-size: 1.05rem;
+            margin: 0 auto;
         }
 
-        .footer-cta .cta-button {
-            display: inline-block;
-            width: auto;
-            padding: 18px 50px;
-            font-size: 1rem;
-            background: var(--gold);
+        .batch-video-pricing {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .footer-cta .cta-button:hover {
-            background: var(--gold-light);
+        .batch-video-row {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 20px 25px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .batch-video-row:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .batch-video-row .label {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .batch-video-row .value {
+            display: block;
+            color: var(--gold-light);
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .batch-video-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .batch-video-note svg {
+            width: 20px;
+            height: 20px;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .batch-video-note span {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
         }
 
         /* Responsive */
@@ -1168,11 +1233,6 @@
                 padding-left: 25px;
             }
 
-            .cta-button {
-                padding: 12px 25px;
-                font-size: 0.9rem;
-            }
-
             /* Custom Offer Mobile */
             .custom-offer {
                 padding: 30px 20px;
@@ -1195,21 +1255,67 @@
                 font-size: 0.9rem;
             }
 
-            /* Footer CTA Mobile */
-            .footer-cta {
-                padding: 60px 20px;
+            /* Video Add-ons Mobile */
+            .video-addons {
+                padding: 30px 20px;
+                margin-top: 30px;
             }
 
-            .footer-cta h2 {
-                font-size: 1.5rem;
+            .video-addons h4 {
+                font-size: 1.2rem;
             }
 
-            .footer-cta p {
-                font-size: 0.95rem;
+            .addons-grid {
+                grid-template-columns: 1fr;
             }
 
-            .footer-cta .cta-button {
-                padding: 15px 35px;
+            .addon-item {
+                padding: 15px 20px;
+            }
+
+            .addon-name {
+                font-size: 0.9rem;
+            }
+
+            /* Batch Video Mobile */
+            .batch-video {
+                padding: 35px 20px;
+                margin-top: 30px;
+            }
+
+            .batch-video-header h4 {
+                font-size: 1.4rem;
+            }
+
+            .batch-video-header p {
+                font-size: 0.9rem;
+            }
+
+            .batch-video-pricing {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .batch-video-row {
+                padding: 15px;
+            }
+
+            .batch-video-row .label {
+                font-size: 0.8rem;
+            }
+
+            .batch-video-row .value {
+                font-size: 1.1rem;
+            }
+
+            .batch-video-note {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+
+            .batch-video-note span {
+                font-size: 0.85rem;
             }
 
             /* Language Switcher Mobile */
@@ -1291,10 +1397,6 @@
                 padding: 25px 15px;
             }
 
-            .footer-cta {
-                padding: 50px 15px;
-            }
-
             .hero h1 {
                 font-size: 1.7rem;
             }
@@ -1312,10 +1414,10 @@
 <body>
     <!-- Language Switcher -->
     <div class="language-switcher">
-        <button class="lang-btn active" data-lang="en">
+        <button class="lang-btn" data-lang="en">
             <span class="flag">🇬🇧</span> EN
         </button>
-        <button class="lang-btn" data-lang="fr">
+        <button class="lang-btn active" data-lang="fr">
             <span class="flag">🇫🇷</span> FR
         </button>
     </div>
@@ -1323,13 +1425,13 @@
     <!-- Hero Section -->
     <section class="hero">
         <h1>Airmind Creation</h1>
-        <p class="tagline" data-en="The art of captivating. The science of converting." data-fr="L'art de captiver. La science de convertir.">The art of captivating. The science of converting.</p>
+        <p class="tagline" data-en="The art of captivating. The science of converting." data-fr="L'art de captiver. La science de convertir.">L'art de captiver. La science de convertir.</p>
         <p class="hero-description" data-en="An agile visual studio with high product fidelity, delivering fast and consistent production at reduced costs. We transform your visual needs into professional assets designed to power every touchpoint with your customers." data-fr="Un studio visuel agile, à haute fidélité produit, pour une production rapide et cohérente à moindres coûts. Nous transformons vos besoins visuels en assets professionnels, pensés pour alimenter chaque point de contact avec vos clients.">
-            An agile visual studio with high product fidelity, delivering fast and consistent production at reduced costs. 
-            We transform your visual needs into professional assets designed to power every touchpoint with your customers.
+            Un studio visuel agile, à haute fidélité produit, pour une production rapide et cohérente à moindres coûts. 
+            Nous transformons vos besoins visuels en assets professionnels, pensés pour alimenter chaque point de contact avec vos clients.
         </p>
         <div class="scroll-indicator">
-            <span data-en="Discover" data-fr="Découvrir">Discover</span>
+            <span data-en="Discover" data-fr="Découvrir">Découvrir</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 5v14M5 12l7 7 7-7"/>
             </svg>
@@ -1340,106 +1442,106 @@
         <!-- Catalog Harmonization Section -->
         <section class="catalog-section">
             <div class="section-header">
-                <h2 data-en="Catalog Harmonization" data-fr="Harmonisation Catalogue">Catalog Harmonization</h2>
-                <p data-en="Achieve a visually consistent online store without managing hundreds of individual photoshoots. Calibrate once, batch-produce everywhere." data-fr="Obtenez une boutique visuellement homogène sans gérer des centaines de shootings individuels. Calibrez une fois, déclinez partout.">Achieve a visually consistent online store without managing hundreds of individual photoshoots. Calibrate once, batch-produce everywhere.</p>
+                <h2 data-en="Catalog Harmonization" data-fr="Harmonisation Catalogue">Harmonisation Catalogue</h2>
+                <p data-en="Achieve a visually consistent online store without managing hundreds of individual photoshoots. Calibrate once, batch-produce everywhere." data-fr="Obtenez une boutique visuellement homogène sans gérer des centaines de shootings individuels. Calibrez une fois, déclinez partout.">Obtenez une boutique visuellement homogène sans gérer des centaines de shootings individuels. Calibrez une fois, déclinez partout.</p>
             </div>
 
             <!-- Process Steps -->
             <div class="process-steps">
                 <div class="process-step">
                     <div class="step-icon">1</div>
-                    <h4 data-en="Free Audit" data-fr="Audit Gratuit">Free Audit</h4>
-                    <p data-en="30-minute video call to validate feasibility and provide a checklist." data-fr="Visio 30 min. Validation faisabilité (GO/NO GO) et checklist.">30-minute video call to validate feasibility and provide a checklist.</p>
+                    <h4 data-en="Free Audit" data-fr="Audit Gratuit">Audit Gratuit</h4>
+                    <p data-en="30-minute video call to validate feasibility and provide a checklist." data-fr="Visio 30 min. Validation faisabilité (GO/NO GO) et checklist.">Visio 30 min. Validation faisabilité (GO/NO GO) et checklist.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-icon">2</div>
                     <h4 data-en="Calibration" data-fr="Calibration">Calibration</h4>
-                    <p data-en="Creation and validation of visual axes on 2-3 pilot products." data-fr="Création et validation des axes sur 2-3 produits pilotes.">Creation and validation of visual axes on 2-3 pilot products.</p>
+                    <p data-en="Creation and validation of visual axes on 2-3 pilot products." data-fr="Création et validation des axes sur 2-3 produits pilotes.">Création et validation des axes sur 2-3 produits pilotes.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-icon">3</div>
-                    <h4 data-en="Batch Production" data-fr="Production Batch">Batch Production</h4>
-                    <p data-en="Industrial rollout across your entire catalog." data-fr="Lancement industriel sur l'ensemble du catalogue.">Industrial rollout across your entire catalog.</p>
+                    <h4 data-en="Batch Production" data-fr="Production Batch">Production Batch</h4>
+                    <p data-en="Industrial rollout across your entire catalog." data-fr="Lancement industriel sur l'ensemble du catalogue.">Lancement industriel sur l'ensemble du catalogue.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-icon">4</div>
-                    <h4 data-en="Delivery" data-fr="Livraison">Delivery</h4>
-                    <p data-en="Structured export ready for store integration." data-fr="Export structuré prêt pour l'intégration boutique.">Structured export ready for store integration.</p>
+                    <h4 data-en="Delivery" data-fr="Livraison">Livraison</h4>
+                    <p data-en="Structured export ready for store integration." data-fr="Export structuré prêt pour l'intégration boutique.">Export structuré prêt pour l'intégration boutique.</p>
                 </div>
             </div>
 
             <!-- Pricing Tables -->
             <div class="pricing-section">
                 <div class="pricing-table">
-                    <h4><span class="step-num">1</span> <span data-en="Axis Calibration" data-fr="Calibration des axes">Axis Calibration</span></h4>
-                    <p class="description" data-en="One-time setup fee. Includes research, pilot validation, and technical configuration." data-fr="Frais uniques de mise en place. Inclus : recherche, validation sur pilotes et configuration technique.">One-time setup fee. Includes research, pilot validation, and technical configuration.</p>
+                    <h4><span class="step-num">1</span> <span data-en="Axis Calibration" data-fr="Calibration des axes">Calibration des axes</span></h4>
+                    <p class="description" data-en="One-time setup fee. Includes research, pilot validation, and technical configuration." data-fr="Frais uniques de mise en place. Inclus : recherche, validation sur pilotes et configuration technique.">Frais uniques de mise en place. Inclus : recherche, validation sur pilotes et configuration technique.</p>
                     <div class="price-row">
-                        <span class="label" data-en="1 Axis — Single Output" data-fr="1 axe — Rendu unique">1 Axis — Single Output</span>
+                        <span class="label" data-en="1 Axis — Single Output" data-fr="1 axe — Rendu unique">1 axe — Rendu unique</span>
                         <span class="value">€390</span>
                     </div>
                     <div class="price-row">
-                        <span class="label" data-en="2 Axes — Duo Pack" data-fr="2 axes — Pack duo">2 Axes — Duo Pack</span>
+                        <span class="label" data-en="2 Axes — Duo Pack" data-fr="2 axes — Pack duo">2 axes — Pack duo</span>
                         <span class="value">€690</span>
                     </div>
                     <div class="price-row">
-                        <span class="label" data-en="3 Axes — Complete Pack" data-fr="3 axes — Pack complet">3 Axes — Complete Pack</span>
+                        <span class="label" data-en="3 Axes — Complete Pack" data-fr="3 axes — Pack complet">3 axes — Pack complet</span>
                         <span class="value">€990</span>
                     </div>
                 </div>
 
                 <div class="pricing-table">
-                    <h4><span class="step-num">2</span> <span data-en="Batch Production" data-fr="Production Batch">Batch Production</span></h4>
-                    <p class="description" data-en="Cumulative tier pricing (computation costs included)." data-fr="Tarification par tranches cumulables (coûts de calcul inclus).">Cumulative tier pricing (computation costs included).</p>
+                    <h4><span class="step-num">2</span> <span data-en="Batch Production" data-fr="Production Batch">Production Batch</span></h4>
+                    <p class="description" data-en="Cumulative tier pricing (computation costs included)." data-fr="Tarification par tranches cumulables (coûts de calcul inclus).">Tarification par tranches cumulables (coûts de calcul inclus).</p>
                     <div class="price-row">
-                        <span class="label" data-en="1 to 50 products" data-fr="De 1 à 50 produits">1 to 50 products</span>
-                        <span class="value">€8.00/<span data-en="product" data-fr="produit">product</span></span>
+                        <span class="label" data-en="1 to 50 products" data-fr="De 1 à 50 produits">De 1 à 50 produits</span>
+                        <span class="value">€8.00/<span data-en="product" data-fr="produit">produit</span></span>
                     </div>
                     <div class="price-row">
-                        <span class="label" data-en="51 to 100 products" data-fr="De 51 à 100 produits">51 to 100 products</span>
-                        <span class="value">€6.50/<span data-en="product" data-fr="produit">product</span></span>
+                        <span class="label" data-en="51 to 100 products" data-fr="De 51 à 100 produits">De 51 à 100 produits</span>
+                        <span class="value">€6.50/<span data-en="product" data-fr="produit">produit</span></span>
                     </div>
                     <div class="price-row">
-                        <span class="label" data-en="101 to 150 products" data-fr="De 101 à 150 produits">101 to 150 products</span>
-                        <span class="value">€5.80/<span data-en="product" data-fr="produit">product</span></span>
+                        <span class="label" data-en="101 to 150 products" data-fr="De 101 à 150 produits">De 101 à 150 produits</span>
+                        <span class="value">€5.80/<span data-en="product" data-fr="produit">produit</span></span>
                     </div>
                     <div class="price-row">
-                        <span class="label" data-en="151 to 200 products" data-fr="De 151 à 200 produits">151 to 200 products</span>
-                        <span class="value">€5.20/<span data-en="product" data-fr="produit">product</span></span>
+                        <span class="label" data-en="151 to 200 products" data-fr="De 151 à 200 produits">De 151 à 200 produits</span>
+                        <span class="value">€5.20/<span data-en="product" data-fr="produit">produit</span></span>
                     </div>
                     <div class="price-row">
-                        <span class="label" data-en="201 to 300 products" data-fr="De 201 à 300 produits">201 to 300 products</span>
-                        <span class="value">€4.60/<span data-en="product" data-fr="produit">product</span></span>
+                        <span class="label" data-en="201 to 300 products" data-fr="De 201 à 300 produits">De 201 à 300 produits</span>
+                        <span class="value">€4.60/<span data-en="product" data-fr="produit">produit</span></span>
                     </div>
                     <div class="price-row">
-                        <span class="label" data-en="301 to 400 products" data-fr="De 301 à 400 produits">301 to 400 products</span>
-                        <span class="value">€4.10/<span data-en="product" data-fr="produit">product</span></span>
+                        <span class="label" data-en="301 to 400 products" data-fr="De 301 à 400 produits">De 301 à 400 produits</span>
+                        <span class="value">€4.10/<span data-en="product" data-fr="produit">produit</span></span>
                     </div>
                     <div class="price-row">
-                        <span class="label" data-en="401 to 500 products" data-fr="De 401 à 500 produits">401 to 500 products</span>
-                        <span class="value">€3.90/<span data-en="product" data-fr="produit">product</span></span>
+                        <span class="label" data-en="401 to 500 products" data-fr="De 401 à 500 produits">De 401 à 500 produits</span>
+                        <span class="value">€3.90/<span data-en="product" data-fr="produit">produit</span></span>
                     </div>
                     <div class="price-row">
-                        <span class="label" data-en="501+ products" data-fr="501 et + produits">501+ products</span>
-                        <span class="value" data-en="Quote" data-fr="Sur devis">Quote</span>
+                        <span class="label" data-en="501+ products" data-fr="501 et + produits">501 et + produits</span>
+                        <span class="value" data-en="Quote" data-fr="Sur devis">Sur devis</span>
                     </div>
                 </div>
             </div>
 
             <!-- Budget Examples -->
             <div class="budget-examples">
-                <h4 data-en="Budget Examples" data-fr="Exemples de Budget">Budget Examples</h4>
+                <h4 data-en="Budget Examples" data-fr="Exemples de Budget">Exemples de Budget</h4>
                 <div class="budget-grid">
                     <div class="budget-card">
                         <div class="amount">€790</div>
-                        <div class="breakdown" data-en="1 axis + 50 products" data-fr="1 axe + 50 produits">1 axis + 50 products<br><small>(€390 + 50 × €8)</small></div>
+                        <div class="breakdown" data-en="1 axis + 50 products" data-fr="1 axe + 50 produits">1 axe + 50 produits<br><small>(€390 + 50 × €8)</small></div>
                     </div>
                     <div class="budget-card">
                         <div class="amount">€1,415</div>
-                        <div class="breakdown" data-en="2 axes + 100 products" data-fr="2 axes + 100 produits">2 axes + 100 products<br><small data-en="(€690 + cumulative tiers)" data-fr="(€690 + tranches cumulées)">(€690 + cumulative tiers)</small></div>
+                        <div class="breakdown" data-en="2 axes + 100 products" data-fr="2 axes + 100 produits">2 axes + 100 produits<br><small data-en="(€690 + cumulative tiers)" data-fr="(€690 + tranches cumulées)">(€690 + tranches cumulées)</small></div>
                     </div>
                     <div class="budget-card">
                         <div class="amount">€3,135</div>
-                        <div class="breakdown" data-en="3 axes + 400 products" data-fr="3 axes + 400 produits">3 axes + 400 products<br><small data-en="(€990 + cumulative tiers)" data-fr="(€990 + tranches cumulées)">(€990 + cumulative tiers)</small></div>
+                        <div class="breakdown" data-en="3 axes + 400 products" data-fr="3 axes + 400 produits">3 axes + 400 produits<br><small data-en="(€990 + cumulative tiers)" data-fr="(€990 + tranches cumulées)">(€990 + tranches cumulées)</small></div>
                     </div>
                 </div>
             </div>
@@ -1449,27 +1551,27 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
                 </svg>
-                <p><strong data-en="Catalog Extension:" data-fr="Extension Catalogue :">Catalog Extension:</strong> <span data-en="Add new products at the same unit rate for 12 months, as long as the calibrated axes remain unchanged." data-fr="Ajout de nouveaux produits au même tarif unitaire pendant 12 mois, tant que les axes restent inchangés.">Add new products at the same unit rate for 12 months, as long as the calibrated axes remain unchanged.</span></p>
+                <p><strong data-en="Catalog Extension:" data-fr="Extension Catalogue :">Extension Catalogue :</strong> <span data-en="Add new products at the same unit rate for 12 months, as long as the calibrated axes remain unchanged." data-fr="Ajout de nouveaux produits au même tarif unitaire pendant 12 mois, tant que les axes restent inchangés.">Ajout de nouveaux produits au même tarif unitaire pendant 12 mois, tant que les axes restent inchangés.</span></p>
             </div>
 
             <!-- Pricing Calculator -->
             <div class="calculator-section">
-                <h4 data-en="Pricing Calculator" data-fr="Calculateur de Prix">Pricing Calculator</h4>
-                <p class="calculator-subtitle" data-en="Estimate your catalog harmonization cost" data-fr="Estimez le coût de votre harmonisation catalogue">Estimate your catalog harmonization cost</p>
+                <h4 data-en="Pricing Calculator" data-fr="Calculateur de Prix">Calculateur de Prix</h4>
+                <p class="calculator-subtitle" data-en="Estimate your catalog harmonization cost" data-fr="Estimez le coût de votre harmonisation catalogue">Estimez le coût de votre harmonisation catalogue</p>
                 
                 <div class="calculator-grid">
                     <div class="calculator-inputs">
                         <div class="input-group">
-                            <label data-en="Number of Axes" data-fr="Nombre d'Axes">Number of Axes</label>
+                            <label data-en="Number of Axes" data-fr="Nombre d'Axes">Nombre d'Axes</label>
                             <div class="axes-buttons">
-                                <button class="axis-btn active" data-axes="1" data-price="390" data-en="1 Axis" data-fr="1 Axe">1 Axis<span>€390</span></button>
+                                <button class="axis-btn active" data-axes="1" data-price="390" data-en="1 Axis" data-fr="1 Axe">1 Axe<span>€390</span></button>
                                 <button class="axis-btn" data-axes="2" data-price="690" data-en="2 Axes" data-fr="2 Axes">2 Axes<span>€690</span></button>
                                 <button class="axis-btn" data-axes="3" data-price="990" data-en="3 Axes" data-fr="3 Axes">3 Axes<span>€990</span></button>
                             </div>
                         </div>
                         
                         <div class="input-group">
-                            <label for="products" data-en="Number of Products" data-fr="Nombre de Produits">Number of Products</label>
+                            <label for="products" data-en="Number of Products" data-fr="Nombre de Produits">Nombre de Produits</label>
                             <input type="number" id="products" min="1" max="1000" value="100">
                             <input type="range" id="products-slider" min="1" max="500" value="100">
                         </div>
@@ -1478,21 +1580,21 @@
                     <div class="calculator-result">
                         <div class="result-breakdown">
                             <div class="breakdown-row">
-                                <span data-en="Axis Calibration" data-fr="Calibration des axes">Axis Calibration</span>
+                                <span data-en="Axis Calibration" data-fr="Calibration des axes">Calibration des axes</span>
                                 <span id="axis-cost">€390</span>
                             </div>
                             <div class="breakdown-row">
-                                <span data-en="Batch Production" data-fr="Production Batch">Batch Production</span>
+                                <span data-en="Batch Production" data-fr="Production Batch">Production Batch</span>
                                 <span id="batch-cost">€725</span>
                             </div>
                             <div class="breakdown-details" id="batch-details"></div>
                         </div>
                         <div class="result-total">
-                            <span data-en="Total Estimate" data-fr="Estimation Totale">Total Estimate</span>
+                            <span data-en="Total Estimate" data-fr="Estimation Totale">Estimation Totale</span>
                             <span id="total-cost">€1,115</span>
                         </div>
                         <div class="result-note">
-                            <span id="per-product-cost" data-en-suffix=" per product" data-fr-suffix=" par produit">€11.15 per product</span>
+                            <span id="per-product-cost" data-en-suffix=" per product" data-fr-suffix=" par produit">€11.15 par produit</span>
                         </div>
                     </div>
                 </div>
@@ -1500,13 +1602,13 @@
 
             <!-- Conditions -->
             <div class="conditions">
-                <h4 data-en="General Conditions" data-fr="Conditions Générales">General Conditions</h4>
+                <h4 data-en="General Conditions" data-fr="Conditions Générales">Conditions Générales</h4>
                 <ul>
-                    <li data-en="Service subject to feasibility validation (free audit)" data-fr="Offre soumise à validation de faisabilité (audit gratuit)">Service subject to feasibility validation (free audit)</li>
-                    <li data-en="Unlimited creative feedback during calibration phase only" data-fr="Retours créatifs illimités durant la phase de calibration uniquement">Unlimited creative feedback during calibration phase only</li>
-                    <li data-en="Batch production: no per-product creative adjustments" data-fr="Production batch : pas d'ajustements créatifs produit par produit">Batch production: no per-product creative adjustments</li>
-                    <li data-en="Corrections included only for technical non-conformity" data-fr="Corrections incluses uniquement en cas de non-conformité technique">Corrections included only for technical non-conformity</li>
-                    <li data-en="All computation costs are included" data-fr="Tous les coûts de calcul sont inclus">All computation costs are included</li>
+                    <li data-en="Service subject to feasibility validation (free audit)" data-fr="Offre soumise à validation de faisabilité (audit gratuit)">Offre soumise à validation de faisabilité (audit gratuit)</li>
+                    <li data-en="Unlimited creative feedback during calibration phase only" data-fr="Retours créatifs illimités durant la phase de calibration uniquement">Retours créatifs illimités durant la phase de calibration uniquement</li>
+                    <li data-en="Batch production: no per-product creative adjustments" data-fr="Production batch : pas d'ajustements créatifs produit par produit">Production batch : pas d'ajustements créatifs produit par produit</li>
+                    <li data-en="Corrections included only for technical non-conformity" data-fr="Corrections incluses uniquement en cas de non-conformité technique">Corrections incluses uniquement en cas de non-conformité technique</li>
+                    <li data-en="All computation costs are included" data-fr="Tous les coûts de calcul sont inclus">Tous les coûts de calcul sont inclus</li>
                 </ul>
             </div>
         </section>
@@ -1514,100 +1616,206 @@
         <!-- Creative Studio Section -->
         <section class="studio-section">
             <div class="section-header">
-                <h2 data-en="Creative Studio" data-fr="Studio Créatif">Creative Studio</h2>
-                <p data-en="Professional visuals for social media, e-commerce, and advertising campaigns tailored to your needs." data-fr="Visuels professionnels pour les réseaux sociaux, e-commerce et campagnes publicitaires adaptés à vos besoins.">Professional visuals for social media, e-commerce, and advertising campaigns tailored to your needs.</p>
+                <h2 data-en="Creative Studio" data-fr="Studio Créatif">Studio Créatif</h2>
+                <p data-en="Professional visuals for social media, e-commerce, and advertising campaigns tailored to your needs." data-fr="Visuels professionnels pour les réseaux sociaux, e-commerce et campagnes publicitaires adaptés à vos besoins.">Visuels professionnels pour les réseaux sociaux, e-commerce et campagnes publicitaires adaptés à vos besoins.</p>
             </div>
 
             <div class="offers-grid">
                 <!-- Subscription -->
                 <div class="offer-card">
-                    <h3 data-en="Subscription" data-fr="Abonnement">Subscription</h3>
-                    <div class="price">€350<span style="font-size: 1rem; font-weight: 400;" data-en="/month" data-fr="/mois">/month</span></div>
-                    <div class="price-note" data-en="12-month commitment (€450/month for 6 months)" data-fr="Engagement 12 mois (450€/mois sur 6 mois)">12-month commitment (€450/month for 6 months)</div>
-                    <div class="target" data-en="Perfect for maintaining an active Instagram feed without internal effort." data-fr="Maintenir un feed Instagram actif et professionnel sans effort interne.">Perfect for maintaining an active Instagram feed without internal effort.</div>
+                    <h3 data-en="Subscription" data-fr="Abonnement">Abonnement</h3>
+                    <div class="price">€350<span style="font-size: 1rem; font-weight: 400;" data-en="/month" data-fr="/mois">/mois</span></div>
+                    <div class="price-note" data-en="12-month commitment (€450/month for 6 months)" data-fr="Engagement 12 mois (450€/mois sur 6 mois)">Engagement 12 mois (450€/mois sur 6 mois)</div>
+                    <div class="target" data-en="Perfect for maintaining an active Instagram feed without internal effort." data-fr="Maintenir un feed Instagram actif et professionnel sans effort interne.">Maintenir un feed Instagram actif et professionnel sans effort interne.</div>
                     <ul>
-                        <li data-en="5 visuals per month" data-fr="5 visuels / mois">5 visuals per month</li>
-                        <li data-en="Co-built content calendar" data-fr="Calendrier co-construit">Co-built content calendar</li>
-                        <li data-en="Cancellation possible (first 3 months)" data-fr="Rétractation possible (3 premiers mois)">Cancellation possible (first 3 months)</li>
+                        <li data-en="5 visuals per month" data-fr="5 visuels / mois">5 visuels / mois</li>
+                        <li data-en="Co-built content calendar" data-fr="Calendrier co-construit">Calendrier co-construit</li>
+                        <li data-en="Cancellation possible (first 3 months)" data-fr="Rétractation possible (3 premiers mois)">Rétractation possible (3 premiers mois)</li>
                     </ul>
-                    <a href="#" class="cta-button outline" data-en="Book a Call" data-fr="Réserver un RDV">Book a Call</a>
                 </div>
 
                 <!-- Thematic -->
                 <div class="offer-card featured">
-                    <h3 data-en="Thematic" data-fr="Thématique">Thematic</h3>
+                    <h3 data-en="Thematic" data-fr="Thématique">Thématique</h3>
                     <div class="price">€900</div>
-                    <div class="price-note" data-en="One-time payment" data-fr="Paiement unique">One-time payment</div>
-                    <div class="target" data-en="Ideal for launching a new collection or optimizing an e-commerce catalog." data-fr="Le lancement d'une nouvelle collection ou l'optimisation d'un catalogue e-commerce.">Ideal for launching a new collection or optimizing an e-commerce catalog.</div>
+                    <div class="price-note" data-en="One-time payment" data-fr="Paiement unique">Paiement unique</div>
+                    <div class="target" data-en="Ideal for launching a new collection or optimizing an e-commerce catalog." data-fr="Le lancement d'une nouvelle collection ou l'optimisation d'un catalogue e-commerce.">Le lancement d'une nouvelle collection ou l'optimisation d'un catalogue e-commerce.</div>
                     <ul>
-                        <li data-en="Up to 15 selected visuals" data-fr="Jusqu'à 15 visuels sélectionnés">Up to 15 selected visuals</li>
-                        <li data-en="Staging for 1 to 4 products" data-fr="Mise en scène 1 à 4 produits">Staging for 1 to 4 products</li>
-                        <li data-en="Unlimited revisions until approval" data-fr="Retouches illimitées jusqu'à validation">Unlimited revisions until approval</li>
-                        <li data-en="3 format variations per visual" data-fr="Déclinaisons 3 formats par visuel">3 format variations per visual</li>
-                        <li data-en="Delivery in 3-5 business days" data-fr="Livraison 3-5 jours ouvrés">Delivery in 3-5 business days</li>
+                        <li data-en="Up to 15 selected visuals" data-fr="Jusqu'à 15 visuels sélectionnés">Jusqu'à 15 visuels sélectionnés</li>
+                        <li data-en="Staging for 1 to 4 products" data-fr="Mise en scène 1 à 4 produits">Mise en scène 1 à 4 produits</li>
+                        <li data-en="Unlimited revisions until approval" data-fr="Retouches illimitées jusqu'à validation">Retouches illimitées jusqu'à validation</li>
+                        <li data-en="3 format variations per visual" data-fr="Déclinaisons 3 formats par visuel">Déclinaisons 3 formats par visuel</li>
+                        <li data-en="Delivery in 3-5 business days" data-fr="Livraison 3-5 jours ouvrés">Livraison 3-5 jours ouvrés</li>
                     </ul>
-                    <a href="#" class="cta-button" data-en="Book a Call" data-fr="Réserver un RDV">Book a Call</a>
                 </div>
 
                 <!-- Express -->
                 <div class="offer-card">
                     <h3>Express</h3>
                     <div class="price">€400</div>
-                    <div class="price-note" data-en="Guaranteed delivery <24h" data-fr="Livraison garantie < 24h">Guaranteed delivery &lt;24h</div>
-                    <div class="target" data-en="For last-minute marketing needs or quick creative testing." data-fr="Les opérations marketing de dernière minute ou le test rapide de nouvelles créatives Ads.">For last-minute marketing needs or quick creative testing.</div>
+                    <div class="price-note" data-en="Guaranteed delivery <24h" data-fr="Livraison garantie < 24h">Livraison garantie &lt;24h</div>
+                    <div class="target" data-en="For last-minute marketing needs or quick creative testing." data-fr="Les opérations marketing de dernière minute ou le test rapide de nouvelles créatives Ads.">Les opérations marketing de dernière minute ou le test rapide de nouvelles créatives Ads.</div>
                     <ul>
-                        <li data-en="4 visuals included" data-fr="Production Urgente (4 visuels)">4 visuals included</li>
-                        <li data-en="Quick qualification form" data-fr="Formulaire de qualification rapide">Quick qualification form</li>
-                        <li data-en="Format mixing available" data-fr="Panachage des formats possible">Format mixing available</li>
-                        <li data-en="Absolute priority scheduling" data-fr="Priorité absolue sur le planning">Absolute priority scheduling</li>
+                        <li data-en="4 visuals included" data-fr="Production Urgente (4 visuels)">Production Urgente (4 visuels)</li>
+                        <li data-en="Quick qualification form" data-fr="Formulaire de qualification rapide">Formulaire de qualification rapide</li>
+                        <li data-en="Format mixing available" data-fr="Panachage des formats possible">Panachage des formats possible</li>
+                        <li data-en="Absolute priority scheduling" data-fr="Priorité absolue sur le planning">Priorité absolue sur le planning</li>
                     </ul>
-                    <a href="#" class="cta-button outline" data-en="Book a Call" data-fr="Réserver un RDV">Book a Call</a>
                 </div>
             </div>
 
             <!-- Custom Offer -->
             <div class="custom-offer">
                 <div>
-                    <h3 data-en="Custom Solution" data-fr="Sur Mesure">Custom Solution</h3>
-                    <p class="subtitle" data-en="Quote-based pricing" data-fr="Sur Devis">Quote-based pricing</p>
-                    <p data-en="Designed for high-growth brands requiring massive multi-channel production with complete customization and dedicated strategic support." data-fr="Marques à forte croissance nécessitant une production massive et multi-canal avec personnalisation complète et accompagnement stratégique dédié.">Designed for high-growth brands requiring massive multi-channel production with complete customization and dedicated strategic support.</p>
+                    <h3 data-en="Custom Solution" data-fr="Sur Mesure">Sur Mesure</h3>
+                    <p class="subtitle" data-en="Quote-based pricing" data-fr="Sur Devis">Sur Devis</p>
+                    <p data-en="Designed for high-growth brands requiring massive multi-channel production with complete customization and dedicated strategic support." data-fr="Marques à forte croissance nécessitant une production massive et multi-canal avec personnalisation complète et accompagnement stratégique dédié.">Marques à forte croissance nécessitant une production massive et multi-canal avec personnalisation complète et accompagnement stratégique dédié.</p>
                 </div>
                 <div class="custom-features">
                     <div class="custom-feature">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                         </svg>
-                        <span data-en="Full customization" data-fr="Personnalisation complète">Full customization</span>
+                        <span data-en="Full customization" data-fr="Personnalisation complète">Personnalisation complète</span>
                     </div>
                     <div class="custom-feature">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                         </svg>
-                        <span data-en="Unlimited products" data-fr="Nombre de produits illimité">Unlimited products</span>
+                        <span data-en="Unlimited products" data-fr="Nombre de produits illimité">Nombre de produits illimité</span>
                     </div>
                     <div class="custom-feature">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                         </svg>
-                        <span data-en="Total creative freedom" data-fr="Liberté totale des thèmes">Total creative freedom</span>
+                        <span data-en="Total creative freedom" data-fr="Liberté totale des thèmes">Liberté totale des thèmes</span>
                     </div>
                     <div class="custom-feature">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                         </svg>
-                        <span data-en="Dedicated DA support" data-fr="Accompagnement DA dédié">Dedicated DA support</span>
+                        <span data-en="Dedicated DA support" data-fr="Accompagnement DA dédié">Accompagnement DA dédié</span>
                     </div>
                 </div>
             </div>
         </section>
-    </main>
 
-    <!-- Footer CTA -->
-    <section class="footer-cta">
-        <h2 data-en="Ready to Transform Your Visual Production?" data-fr="Prêt à transformer votre production visuelle ?">Ready to Transform Your Visual Production?</h2>
-        <p data-en="Contact us for an initial conversation and discover how Airmind Creation can become your daily visual partner." data-fr="Contactez-nous pour un premier échange et découvrez comment Airmind Creation peut devenir votre partenaire visuel au quotidien.">Contact us for an initial conversation and discover how Airmind Creation can become your daily visual partner.</p>
-        <a href="#" class="cta-button" data-en="Book Your Free Audit" data-fr="Réserver l'audit gratuit">Book Your Free Audit</a>
-    </section>
+        <!-- Motion Studio Section -->
+        <section class="studio-section">
+            <div class="section-header">
+                <h2 data-en="Motion Studio" data-fr="Studio Motion">Studio Motion</h2>
+                <p data-en="AI-powered video production for social media, ads, and e-commerce. Bring your products to life." data-fr="Production vidéo alimentée par l'IA pour les réseaux sociaux, publicités et e-commerce. Donnez vie à vos produits.">Production vidéo alimentée par l'IA pour les réseaux sociaux, publicités et e-commerce. Donnez vie à vos produits.</p>
+            </div>
+
+            <div class="offers-grid">
+                <!-- Single Video -->
+                <div class="offer-card">
+                    <h3 data-en="Single Video" data-fr="Vidéo Unique">Vidéo Unique</h3>
+                    <div class="price">€230</div>
+                    <div class="price-note" data-en="One-off production" data-fr="Production ponctuelle">Production ponctuelle</div>
+                    <div class="target" data-en="Perfect for testing video content or a quick product highlight." data-fr="Idéal pour tester le contenu vidéo ou mettre en avant un produit rapidement.">Idéal pour tester le contenu vidéo ou mettre en avant un produit rapidement.</div>
+                    <ul>
+                        <li data-en="1 video up to 10 seconds" data-fr="1 vidéo jusqu'à 10 secondes">1 vidéo jusqu'à 10 secondes</li>
+                        <li data-en="1 product featured" data-fr="1 produit mis en scène">1 produit mis en scène</li>
+                        <li data-en="2 revision rounds" data-fr="2 tours de révision">2 tours de révision</li>
+                        <li data-en="Delivery in 5-7 business days" data-fr="Livraison en 5-7 jours ouvrés">Livraison en 5-7 jours ouvrés</li>
+                    </ul>
+                </div>
+
+                <!-- Motion Pack -->
+                <div class="offer-card featured">
+                    <h3 data-en="Campaign Pack" data-fr="Pack Campagne">Pack Campagne</h3>
+                    <div class="price">€750</div>
+                    <div class="price-note" data-en="€187.50/video — Best value" data-fr="187,50€/vidéo — Meilleur rapport">187,50€/vidéo — Meilleur rapport</div>
+                    <div class="target" data-en="Ideal for a campaign launch or multi-format social media content." data-fr="Idéal pour un lancement de campagne ou du contenu multi-format pour les réseaux sociaux.">Idéal pour un lancement de campagne ou du contenu multi-format pour les réseaux sociaux.</div>
+                    <ul>
+                        <li data-en="4 videos up to 10 seconds each" data-fr="4 vidéos jusqu'à 10 secondes chacune">4 vidéos jusqu'à 10 secondes chacune</li>
+                        <li data-en="Up to 3 products" data-fr="Jusqu'à 3 produits">Jusqu'à 3 produits</li>
+                        <li data-en="Unlimited revisions until approval" data-fr="Révisions illimitées jusqu'à validation">Révisions illimitées jusqu'à validation</li>
+                        <li data-en="3 format variations (9:16, 1:1, 16:9)" data-fr="3 déclinaisons de format (9:16, 1:1, 16:9)">3 déclinaisons de format (9:16, 1:1, 16:9)</li>
+                        <li data-en="Delivery in 7-10 business days" data-fr="Livraison en 7-10 jours ouvrés">Livraison en 7-10 jours ouvrés</li>
+                    </ul>
+                </div>
+
+                <!-- Motion Subscription -->
+                <div class="offer-card">
+                    <h3 data-en="Motion Subscription" data-fr="Abonnement Motion">Abonnement Motion</h3>
+                    <div class="price">€590<span style="font-size: 1rem; font-weight: 400;" data-en="/month" data-fr="/mois">/mois</span></div>
+                    <div class="price-note" data-en="12-month commitment (€690/month for 6 months)" data-fr="Engagement 12 mois (690€/mois sur 6 mois)">Engagement 12 mois (690€/mois sur 6 mois)</div>
+                    <div class="target" data-en="For brands needing regular video content for social media." data-fr="Pour les marques ayant besoin de contenu vidéo régulier pour les réseaux sociaux.">Pour les marques ayant besoin de contenu vidéo régulier pour les réseaux sociaux.</div>
+                    <ul>
+                        <li data-en="3 videos per month" data-fr="3 vidéos par mois">3 vidéos par mois</li>
+                        <li data-en="Co-built content calendar" data-fr="Calendrier co-construit">Calendrier co-construit</li>
+                        <li data-en="Priority scheduling" data-fr="Priorité sur le planning">Priorité sur le planning</li>
+                        <li data-en="Format variations included" data-fr="Déclinaisons de format incluses">Déclinaisons de format incluses</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Video Add-ons -->
+            <div class="video-addons">
+                <h4 data-en="Video Add-ons" data-fr="Options Vidéo">Options Vidéo</h4>
+                <div class="addons-grid">
+                    <div class="addon-item">
+                        <span class="addon-name" data-en="Extra 5 seconds" data-fr="5 secondes supplémentaires">5 secondes supplémentaires</span>
+                        <span class="addon-price">+€75</span>
+                    </div>
+                    <div class="addon-item">
+                        <span class="addon-name" data-en="Additional product in same video" data-fr="Produit additionnel dans la même vidéo">Produit additionnel dans la même vidéo</span>
+                        <span class="addon-price">+€50</span>
+                    </div>
+                    <div class="addon-item">
+                        <span class="addon-name" data-en="Express delivery (<48h)" data-fr="Livraison express (<48h)">Livraison express (&lt;48h)</span>
+                        <span class="addon-price">+50%</span>
+                    </div>
+                    <div class="addon-item">
+                        <span class="addon-name" data-en="Custom music/sound design" data-fr="Musique/design sonore personnalisé">Musique/design sonore personnalisé</span>
+                        <span class="addon-price">+€80</span>
+                    </div>
+                    <div class="addon-item">
+                        <span class="addon-name" data-en="Voiceover integration" data-fr="Intégration voix-off">Intégration voix-off</span>
+                        <span class="addon-price">+€60</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Batch Video Production -->
+            <div class="batch-video">
+                <div class="batch-video-header">
+                    <h4 data-en="Batch Video Production" data-fr="Production Vidéo en Volume">Production Vidéo en Volume</h4>
+                    <p data-en="For brands needing video versions of their catalog. Requires existing Catalog Harmonization calibration." data-fr="Pour les marques ayant besoin de versions vidéo de leur catalogue. Nécessite une calibration Harmonisation Catalogue existante.">Pour les marques ayant besoin de versions vidéo de leur catalogue. Nécessite une calibration Harmonisation Catalogue existante.</p>
+                </div>
+                <div class="batch-video-pricing">
+                    <div class="batch-video-row">
+                        <span class="label" data-en="1-10 videos" data-fr="1-10 vidéos">1-10 vidéos</span>
+                        <span class="value">€180/<span data-en="video" data-fr="vidéo">vidéo</span></span>
+                    </div>
+                    <div class="batch-video-row">
+                        <span class="label" data-en="11-25 videos" data-fr="11-25 vidéos">11-25 vidéos</span>
+                        <span class="value">€150/<span data-en="video" data-fr="vidéo">vidéo</span></span>
+                    </div>
+                    <div class="batch-video-row">
+                        <span class="label" data-en="26-50 videos" data-fr="26-50 vidéos">26-50 vidéos</span>
+                        <span class="value">€120/<span data-en="video" data-fr="vidéo">vidéo</span></span>
+                    </div>
+                    <div class="batch-video-row">
+                        <span class="label" data-en="51-100 videos" data-fr="51-100 vidéos">51-100 vidéos</span>
+                        <span class="value">€95/<span data-en="video" data-fr="vidéo">vidéo</span></span>
+                    </div>
+                    <div class="batch-video-row">
+                        <span class="label" data-en="101+ videos" data-fr="101+ vidéos">101+ vidéos</span>
+                        <span class="value" data-en="Quote" data-fr="Sur devis">Sur devis</span>
+                    </div>
+                </div>
+                <div class="batch-video-note">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                    <span data-en="Video axis setup: +€200 (one-time fee on top of existing calibration)" data-fr="Configuration axe vidéo : +200€ (frais uniques en plus de la calibration existante)">Configuration axe vidéo : +200€ (frais uniques en plus de la calibration existante)</span>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <script>
         // Pricing Calculator
@@ -1623,43 +1831,11 @@
         ];
 
         let selectedAxes = 1;
+        let currentLang = 'fr';
 
         function calculateBatchCost(numProducts) {
             let total = 0;
             let details = [];
-            let remaining = numProducts;
-
-            for (const tier of tiers) {
-                if (remaining <= 0) break;
-                
-                const tierSize = tier.max - tier.min + 1;
-                const productsInTier = Math.min(remaining, tier.min === 1 ? 50 : tierSize);
-                
-                if (numProducts >= tier.min) {
-                    const actualProducts = Math.min(numProducts, tier.max) - tier.min + 1;
-                    const adjustedProducts = tier.min === 1 ? Math.min(numProducts, 50) : actualProducts;
-                    
-                    if (adjustedProducts > 0 && numProducts >= tier.min) {
-                        let count;
-                        if (tier.min === 1) {
-                            count = Math.min(numProducts, 50);
-                        } else {
-                            count = Math.min(numProducts - tier.min + 1, tier.max - tier.min + 1);
-                            if (numProducts < tier.min) count = 0;
-                        }
-                        
-                        if (count > 0) {
-                            const cost = count * tier.price;
-                            total += cost;
-                            details.push(`${tier.min}-${Math.min(numProducts, tier.max)}: ${count} × €${tier.price.toFixed(2)} = €${cost.toFixed(2)}`);
-                        }
-                    }
-                }
-            }
-
-            // Recalculate properly
-            total = 0;
-            details = [];
             
             for (const tier of tiers) {
                 if (numProducts < tier.min) break;
@@ -1692,7 +1868,9 @@
             document.getElementById('axis-cost').textContent = `€${axisCost.toLocaleString()}`;
             document.getElementById('batch-cost').textContent = `€${batchCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             document.getElementById('total-cost').textContent = `€${totalCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-            document.getElementById('per-product-cost').textContent = `€${perProduct.toFixed(2)} per product`;
+            
+            const suffix = currentLang === 'fr' ? ' par produit' : ' per product';
+            document.getElementById('per-product-cost').textContent = `€${perProduct.toFixed(2)}${suffix}`;
             document.getElementById('batch-details').innerHTML = details.join('<br>');
 
             // Update slider background
@@ -1725,8 +1903,6 @@
         updateCalculator();
 
         // Language Switcher
-        let currentLang = 'en';
-
         function switchLanguage(lang) {
             currentLang = lang;
             
@@ -1766,32 +1942,24 @@
                 btn.classList.toggle('active', btn.dataset.lang === lang);
             });
 
+            // Update featured badge
+            const featuredCards = document.querySelectorAll('.offer-card.featured');
+            featuredCards.forEach(card => {
+                card.style.setProperty('--badge-text', lang === 'fr' ? '"RECOMMANDÉ"' : '"RECOMMENDED"');
+            });
+
             // Update the per-product text in calculator
             updateCalculator();
         }
 
-        // Override updateCalculator to handle language
-        const originalUpdateCalculator = updateCalculator;
-        updateCalculator = function() {
-            const numProducts = parseInt(document.getElementById('products').value) || 0;
-            const axisCost = axisPrices[selectedAxes];
-            const { total: batchCost, details } = calculateBatchCost(numProducts);
-            const totalCost = axisCost + batchCost;
-            const perProduct = numProducts > 0 ? totalCost / numProducts : 0;
-
-            document.getElementById('axis-cost').textContent = `€${axisCost.toLocaleString()}`;
-            document.getElementById('batch-cost').textContent = `€${batchCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-            document.getElementById('total-cost').textContent = `€${totalCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-            
-            const suffix = currentLang === 'fr' ? ' par produit' : ' per product';
-            document.getElementById('per-product-cost').textContent = `€${perProduct.toFixed(2)}${suffix}`;
-            document.getElementById('batch-details').innerHTML = details.join('<br>');
-
-            // Update slider background
-            const slider = document.getElementById('products-slider');
-            const percent = (numProducts / 500) * 100;
-            slider.style.background = `linear-gradient(to right, var(--teal) 0%, var(--teal) ${percent}%, #e0e0e0 ${percent}%, #e0e0e0 100%)`;
-        };
+        // Add CSS for dynamic badge text
+        const style = document.createElement('style');
+        style.textContent = `
+            .offer-card.featured::before {
+                content: var(--badge-text, 'RECOMMENDED');
+            }
+        `;
+        document.head.appendChild(style);
 
         // Language button event listeners
         document.querySelectorAll('.lang-btn').forEach(btn => {
